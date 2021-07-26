@@ -1,5 +1,5 @@
-# RPI class hour list API
-# Author: Yi Yang
+<!-- # RPI class hour list API -->
+<!-- Author: Yi Yang -->
 
 <h2>
 Get RPI classes API
