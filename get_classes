@@ -1,0 +1,10 @@
+#!/bin/bash
+# RPI class hour list API
+# Author: Yi Yang
+# 7/26/21
+command -v chromium-browser >/dev/null 2>&1 || { echo >&2 "FAILURE! Need chromium to get the classes files from RPI website. Try installing chromium first."; exit 1; }
+
+chromium-browser --headless -dump-dom --no-sandbox https://sis.rpi.edu/reg/zs202109.htm > classes 2>/dev/null #supresses error codes
+./srch classes | sh ./clean_up | sed -z 's/,/}\n{/g;s/\n/,/g;s/,{,/,\n{/g;s/,\n{$/\n/g;s/^,/{/g'
+
+

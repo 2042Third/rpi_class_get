@@ -6,15 +6,20 @@
 #include <sys/stat.h>
 #include <stdlib.h>
 #include <vector>
- #include <iostream>
- #include <sys/types.h>
- #include <sys/stat.h>
- #include <fcntl.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+// RPI class list API
+// Author: Yi Yang
+// 7/26/21
+
 using namespace std;
+
 const vector<string> keywds1 = {"table","\\table"};
 const vector<string> keywds2 = {"tr","\\tr"};
 const vector<string> keywds3 = {"td","\\td"};
 const vector<string> keywds4 = {">","<"};
+
 vector<string> keywds5 ;
 
 
@@ -22,9 +27,10 @@ vector<string> keywds5 ;
 template<typename T>
 void pop_front(std::vector<T>& vec)
 {
-    // assert(!vec.empty());
     vec.erase(vec.begin());
 }
+
+
 template<typename T>
 void vec_lookahead(uint8_t* infile,vector<char>*buf,T* i){
   pop_front(*buf);
@@ -80,11 +86,12 @@ class mat{
       if(indx1!=-1 && indx2!=-1){
         for (unsigned long int i=indx1;i< indx2;i++){
           // cout<<buf[i]<<flush;
+         if (buf[i]=='\n'){  break;}
           out_ary.push_back(buf[i]);
         }
-        out_ary.push_back('#');
-        out_ary.push_back('\n');
+        out_ary.push_back(',');
 
+        out_ary.push_back('\n');
         indx1=-1;
         indx2=-1;
         return 1;
