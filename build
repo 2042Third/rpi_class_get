@@ -1,0 +1,3 @@
+#!/bin/bash
+g++ class_search.cpp -O2 -Wall -std=c++17 -o srch
+
